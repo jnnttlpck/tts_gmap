@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>GmapsApp</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag 'application', media: 'all'%>
+    <%= javascript_include_tag 'application' %>
+  </head>
+
+  <body>
+
+    <%= yield %>
+
+    <script type="text/javascript">
+    function initMap() {
+      
+      var latLong = {lat: 35.590390, lng: -82.555888};
+
+      var image = "<%= asset_path 'cat_icon.png' %>";
+
+      var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 15,
+        center: latLong,
+        scrollwheel: false
+      });
+
+      var marker = new google.maps.Marker({
+        position: latLong,
+        map: map,
+        icon: image,
+        animation: google.maps.Animation.BOUNCE
+      });
+
+
+
+    }
+    </script>
+
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAfldMuEpo4tS5pXsZzKUtyqCjqpIJuvoM&callback=initMap">
+    </script>
+
+  </body>
+</html>

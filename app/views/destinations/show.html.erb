@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<div id="destination-map">
+  
+</div>
+
+<p>
+  <strong>City:</strong>
+  <%= @destination.city %>
+</p>
+
+<p>
+  <strong>Country:</strong>
+  <%= @destination.country %>
+</p>
+
+<p><%= @destination.latitude %>, <%= @destination.longitude %></p>
+<p><%= @destination.description %></p>
+
+<%= link_to 'Edit', edit_destination_path(@destination) %> |
+<%= link_to 'Back', destinations_path %>
