@@ -28,6 +28,7 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'jquery-rails'
 gem 'bootstrap-sass'
+gem 'figaro'
 
 
 
