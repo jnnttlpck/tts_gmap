@@ -12,6 +12,7 @@ class DestinationsController < ApplicationController
   def show
   end
 
+
   # GET /destinations/new
   def new
     @destination = Destination.new

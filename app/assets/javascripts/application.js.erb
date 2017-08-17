@@ -15,39 +15,45 @@
 //= require jquery
 //= require_tree .
 $(document).ready(function () {
-
-
-  function initMap() {
-      var latLong = {lat: 35.591391, lng: -82.551023};
-
-      var image = "<%= asset_path ('cat_icon.png')%>";
-
-      var mapOptions = {
-        zoom: 10,
-        center: latLong,
-        scrollwheel: false
-      };
-
-      var map = new google.maps.Map(document.getElementById('map'), mapOptions);
-
-      var marker = new google.maps.Marker({
-        position: latLong,
-        map: map,
-        title: 'Stronbox West',
-        icon: image,
-        animation: google.maps.Animation.DROP,
-        draggable:true
-      });
-
-      var contentString = '<h2>RARRRRRr</h2>' + '<p>Where all your dreams come true with fire.</p>';
-
-      var infowindow = new google.maps.InfoWindow({
-         content: contentString
-      });
-
-      google.maps.event.addListener(marker, 'click', function() {
-         infowindow.open(map,marker);
-      });
-  }
-
+      this.initMap();
 });
+function initMap() {
+    var sites = [
+      ['Machu Picchu', -13.163047, -72.544566, 4],
+      ['Temple of the 3 Windows', -13.163726, -72.544881, 5],
+      ['House of the Guardian to the Funerary Rock', -13.165398, -72.544624, 3],
+      ['Sacred Rock', -13.161846, -72.546104, 2],
+      ['Intihuatana', -13.163439, -72.546732, 1]
+    ];
+    var latLong = new google.maps.LatLng(latitude, longitude);
+    var image = "<%= asset_path ('cat_icon.png')%>";
+    var fishImg = "<%= asset_path ('cat-xxl.png') %>";
+    var mapOptions = {
+      zoom: 10,
+      center: latLong,
+      scrollwheel: false
+    };
+    var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+    var marker = new google.maps.Marker({
+      position: latLong,
+      map: map,
+      title: 'Stronbox West',
+      icon: fishImg,
+      animation: google.maps.Animation.BOUNCE
+    });
+    for (i = 0; i < sites.length; i++) {
+        marker = new google.maps.Marker({
+            position: new google.maps.LatLng(sites[i][1], sites[i][2]),
+            map: map,
+            icon: image,
+            animation: google.maps.Animation.DROP
+        });
+    }
+    var contentString = '<h2>RARRRRRr</h2>' + address;
+    var infowindow = new google.maps.InfoWindow({
+       content: contentString
+    });
+    google.maps.event.addListener(marker, 'click', function() {
+       infowindow.open(map,marker);
+    });
+}
